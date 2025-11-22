@@ -1,14 +1,19 @@
 name: CI
 
 on:
+  #Evento gatillo
   push:
+    #Ramas en donde se va a disparar el evento
     branches:
       - main
 
+      #Jobs: en este caso solo hay uno
 jobs:
   build:
+    #Sistema operativo
     runs-on: ubuntu-latest
 
+    #Variables de entorno
     env:
       nombres: "Marco Oswaldo"
       apellidos: "Tello Sánchez"
@@ -16,15 +21,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      #Imprimir presentación
       - name: presentación
         run: |
           echo "Nombres: $nombres"
           echo "Apellidos: $apellidos"
           echo "Edad: $edad"
 
+      #Imprimir datos generales
       - name: datos generales
         run: echo "carrera de ingeniería de sistemas"
 
+      #Imprimir variables secretas
       - name: variables de entorno secretas
         env:
           user: ${{ secrets.user }}
@@ -33,6 +42,7 @@ jobs:
           echo "user: $user"
           echo "password: $password"
 
+      #Imprimir variables abiertas    
       - name: variables abiertas
         run: |
           echo "Versión del proyecto: ${{ vars.version_proyecto }}"
